@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>Mac打不开应用，显示“文件已损坏”</title>
+    <link href="/2023/05/09/mac-xattr/"/>
+    <url>/2023/05/09/mac-xattr/</url>
+    
+    <content type="html"><![CDATA[<p>平时在网上下载的应用，由于不是在苹果商店里购买的，经常会出现抱错，“文件已损坏”。这时候就很头疼。</p><h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>解决办法很简单，一行命令就搞定了。</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo xattr -rd com.apple.quarantine &#123;&#123;file_path&#125;&#125;<br></code></pre></td></tr></table></figure><p>引用一段AI的回答。</p><blockquote><p>这是一个在MacOS上的shell命令，用于从文件或目录中删除隔离属性（quarantine attribute）。隔离属性是操作系统为从互联网下载或从其他来源接收的文件添加的一种安全措施，以防止用户意外执行可能有害的代码。<br><br>命令<code>sudo xattr -rd com.apple.quarantine &#123;&#123;file_path&#125;&#125;</code>将从指定的文件或目录中删除隔离属性，使其可以在没有任何警告或限制的情况下执行。<code>sudo</code>命令用于以管理员权限运行命令，这可能取决于文件的权限。<code>-r</code>选项用于递归地从指定目录中删除属性，<code>-d</code>选项用于从目录本身中删除属性。</p></blockquote>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>Mac</tag>
+      
+      <tag>Xattr</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>新的开始</title>
+    <link href="/2023/04/03/My-new-Post/"/>
+    <url>/2023/04/03/My-new-Post/</url>
+    
+    <content type="html"><![CDATA[<p>时隔多年，又开始搞博客了。</p><p>大学的时候，短暂的搞过一段时间，当时就是单纯的对自建博客这个东西很好奇。就感觉，哇，好奇妙啊，它就这么展示在了自己的眼前，太不可思议了。那是一种对于技术的好奇，而对于写博客这个事情，其实我当时并没有什么兴趣，也不知道要写些什么东西。最后也就不了了知，没几年就不再续费了，当年的代码后来也找不到了。</p><p>只是可惜了当年购买的域名，<code>niczo.com</code>, 我还挺喜欢这个域名的，简短，好记。现在想再买回来可就难了，已经在域名贩子手里了，要买回来得一两万……，一口老血吐到屏幕上。</p><p>这次多写写吧。</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>First</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  
+</search>
