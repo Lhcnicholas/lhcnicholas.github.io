@@ -16,7 +16,21 @@ tags:
 
 ## 办法
 1. 手机上通过Google Authenticator的导出功能，导出密钥对应的二维码。
+
 2. 使用相机或者微信去识别这个二维码，会得到一串代码，类似：otpauth-migration://offline?data=...
+
 3. 使用[ExtractOtpSecrets](https://github.com/scito/extract_otp_secrets)来提取密钥
+
 4. 将得到的密钥填入到workflow中。
+
+   ![image-2023050917572027](https://lhc-img.oss-cn-hangzhou.aliyuncs.com/image-20230509175720274.png)
+
 5. Alfred中输入`gga`获取你的动态密码吧。
+
+![截屏2023-05-09 17.57.5](https://lhc-img.oss-cn-hangzhou.aliyuncs.com/%E6%88%AA%E5%B1%8F2023-05-09%2017.57.52.png)
+
+
+附：Workflow下载地址: [下载地址](http://lhc-app.oss-cn-hangzhou.aliyuncs.com/GoogleAuth.alfredworkflow)
+
+
+参考：https://zhuanlan.zhihu.com/p/362783435
