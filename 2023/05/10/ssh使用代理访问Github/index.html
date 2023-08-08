@@ -16,15 +16,15 @@
   <meta name="author" content="Nic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="平时在GitHub上看到一些有意思的开源项目，或者自己的代码，想拉下来，结果因为种种原因很难拉下来，这时候就需要用到代理。 如果使用http协议拉取代码还好说，一行代码就搞定了 1export https_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 http_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 all_proxy&#x3D;socks5:&#x2F;&#x2F;127.0.0.1:7890  或">
+    <meta name="description" content="平时在GitHub上看到一些有意思的开源项目，或者自己的代码，想拉下来，结果因为种种原因很难拉下来，这时候就需要用到代理。 HTTP协议拉取代码如果使用http协议拉取代码还好说，一行代码就搞定了 1export https_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 http_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 all_proxy&#x3D;socks5:&#x2F;&#x2F;127.0.0">
 <meta property="og:type" content="article">
 <meta property="og:title" content="ssh使用代理访问Github">
 <meta property="og:url" content="http://lhcnicholas.github.io/2023/05/10/ssh%E4%BD%BF%E7%94%A8%E4%BB%A3%E7%90%86%E8%AE%BF%E9%97%AEGithub/index.html">
 <meta property="og:site_name" content="NIC ZONE">
-<meta property="og:description" content="平时在GitHub上看到一些有意思的开源项目，或者自己的代码，想拉下来，结果因为种种原因很难拉下来，这时候就需要用到代理。 如果使用http协议拉取代码还好说，一行代码就搞定了 1export https_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 http_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 all_proxy&#x3D;socks5:&#x2F;&#x2F;127.0.0.1:7890  或">
+<meta property="og:description" content="平时在GitHub上看到一些有意思的开源项目，或者自己的代码，想拉下来，结果因为种种原因很难拉下来，这时候就需要用到代理。 HTTP协议拉取代码如果使用http协议拉取代码还好说，一行代码就搞定了 1export https_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 http_proxy&#x3D;http:&#x2F;&#x2F;127.0.0.1:7890 all_proxy&#x3D;socks5:&#x2F;&#x2F;127.0.0">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2023-05-10T15:05:20.000Z">
-<meta property="article:modified_time" content="2023-08-08T09:17:17.013Z">
+<meta property="article:modified_time" content="2023-08-08T10:08:57.568Z">
 <meta property="article:author" content="Nic">
 <meta property="article:tag" content="Git">
 <meta property="article:tag" content="Github">
@@ -223,7 +223,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          229 words
+          1.1k words
         
       </span>
     
@@ -234,7 +234,7 @@
         
         
         
-          2 mins
+          9 mins
         
       </span>
     
@@ -278,10 +278,33 @@
               <div class="markdown-body">
                 
                 <p>平时在GitHub上看到一些有意思的开源项目，或者自己的代码，想拉下来，结果因为种种原因很难拉下来，这时候就需要用到代理。</p>
-<p>如果使用http协议拉取代码还好说，一行代码就搞定了</p>
+<h3 id="HTTP协议拉取代码"><a href="#HTTP协议拉取代码" class="headerlink" title="HTTP协议拉取代码"></a>HTTP协议拉取代码</h3><p>如果使用http协议拉取代码还好说，一行代码就搞定了</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-built_in">export</span> https_proxy=http://127.0.0.1:7890 http_proxy=http://127.0.0.1:7890 all_proxy=socks5://127.0.0.1:7890<br></code></pre></td></tr></table></figure>
 
 <p>或者直接把这串配到<code>.zshrc</code>里面去，都可以，这样就不需要每次都敲一遍了。</p>
+<h3 id="SSH协议拉取代码"><a href="#SSH协议拉取代码" class="headerlink" title="SSH协议拉取代码"></a>SSH协议拉取代码</h3><p>但是呢，使用使用http协议拉取代码总要输入密码，就很麻烦，这时候SSH就登场了。</p>
+<p>SSH设置代理的方式稍微复杂一点，不过也就一点点🤏。</p>
+<ol>
+<li><p>我们要在<code>～/.ssh</code>目录下创建一个<code>config</code>文件，名字就叫config，无后缀。</p>
+</li>
+<li><p>在<code>config</code>文件里面配置如下：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sh">Host github.com<br>  User git<br>  HostName ssh.github.com<br>  Port 443<br>  ProxyCommand nc -v -x 127.0.0.1:7890 %h %p<br>  IdentitiesOnly <span class="hljs-built_in">yes</span><br>  IdentityFile ~/.ssh/github_rsa<br></code></pre></td></tr></table></figure>
+</li>
+<li><p>配置好之后我们可以用<code> ssh -T git@github.com</code> 这个命令来测试一下，正常情况下会有如下响应。</p>
+</li>
+</ol>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"> ~ ssh -T git@github.com<br>Connection to ssh.github.com port 443 [tcp/https] succeeded!<br>Hi Lhcnicholas! You<span class="hljs-string">&#x27;ve successfully authenticated, but GitHub does not provide shell access.</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="配置说明"><a href="#配置说明" class="headerlink" title="配置说明"></a>配置说明</h4><p><code>User git</code> ：这个是固定的</p>
+<p><code>HostName ssh.github.com</code>：在使用443端口情况下主机名为<code>ssh.github.com</code></p>
+<p><code>Port 443</code>: 22端口有时会因为各种原因连不上，所以我们用443端口，稳一些</p>
+<p><code>ProxyCommand nc -v -x 127.0.0.1:7890 %h %p</code>: 中间是你的代理地址，具体命令每一个参数什么意思，不用太在意（主要我自己也说不太清）</p>
+<p><code>IdentitiesOnly yes</code>: 是否只用指定的标识文件来验证身份，不再尝试其他方式（可有可无，影响不大）</p>
+<p><code>IdentityFile ~/.ssh/github_rsa</code>: 你的标识文件的目录地址（私钥地址，不是公钥）。</p>
+<blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://hellodk.cn/post/975">GitHub 加速终极教程(大佬)</a></p>
+<p>参考：<a target="_blank" rel="noopener" href="https://docs.github.com/zh/authentication/troubleshooting-ssh/using-ssh-over-the-https-port">在HTTPS端口使用SSH</a></p>
+</blockquote>
 
                 
               </div>
