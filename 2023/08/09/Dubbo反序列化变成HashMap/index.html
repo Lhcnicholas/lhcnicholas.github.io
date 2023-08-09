@@ -16,25 +16,28 @@
   <meta name="author" content="Nic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="平时在网上下载的应用，由于不是在苹果商店里购买的，经常会出现抱错，“文件已损坏”。这时候就很头疼。 解决办法解决办法很简单，一行命令就搞定了。 1sudo xattr -rd com.apple.quarantine &amp;#123;&amp;#123;file_path&amp;#125;&amp;#125;  引用一段AI的回答。  这是一个在MacOS上的shell命令，用于从文件或目录中删除隔离属性（quaranti">
+    <meta name="description" content="前言前一阵遇到一个很有意思的问题，Dubbo客户端调用服务端接口，报错了，抛了一个异常，结果到了客户端这边，却变成了一个HashMap，而HashMap里面存放的正是报错信息！ 当时的第一反应就是不可能，这不可能。 排查问题虽然嘴上说不可能，但是事实就摆在眼前，没办法，也只能接受这个现实。那接下来就是漫长的排查问题了（其实也还好，就一个多小时）。 经过漫长的排查，最终定位到了Hessian中的Cl">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Mac打不开应用，显示“文件已损坏”">
-<meta property="og:url" content="http://lhcnicholas.github.io/2023/05/09/mac-xattr/index.html">
+<meta property="og:title" content="Dubbo反序列化变成HashMap">
+<meta property="og:url" content="http://lhcnicholas.github.io/2023/08/09/Dubbo%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%98%E6%88%90HashMap/index.html">
 <meta property="og:site_name" content="NIC ZONE">
-<meta property="og:description" content="平时在网上下载的应用，由于不是在苹果商店里购买的，经常会出现抱错，“文件已损坏”。这时候就很头疼。 解决办法解决办法很简单，一行命令就搞定了。 1sudo xattr -rd com.apple.quarantine &amp;#123;&amp;#123;file_path&amp;#125;&amp;#125;  引用一段AI的回答。  这是一个在MacOS上的shell命令，用于从文件或目录中删除隔离属性（quaranti">
+<meta property="og:description" content="前言前一阵遇到一个很有意思的问题，Dubbo客户端调用服务端接口，报错了，抛了一个异常，结果到了客户端这边，却变成了一个HashMap，而HashMap里面存放的正是报错信息！ 当时的第一反应就是不可能，这不可能。 排查问题虽然嘴上说不可能，但是事实就摆在眼前，没办法，也只能接受这个现实。那接下来就是漫长的排查问题了（其实也还好，就一个多小时）。 经过漫长的排查，最终定位到了Hessian中的Cl">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-05-09T09:53:35.000Z">
+<meta property="article:published_time" content="2023-08-09T17:38:09.000Z">
 <meta property="article:modified_time" content="2023-08-09T10:08:52.548Z">
 <meta property="article:author" content="Nic">
-<meta property="article:tag" content="Mac">
-<meta property="article:tag" content="Xattr">
+<meta property="article:tag" content="Dubbo">
+<meta property="article:tag" content="Hession">
+<meta property="article:tag" content="HashMap">
+<meta property="article:tag" content="Java">
+<meta property="article:tag" content="DENY_CLASS">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>Mac打不开应用，显示“文件已损坏” - NIC ZONE</title>
+  <title>Dubbo反序列化变成HashMap - NIC ZONE</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -200,7 +203,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="Mac打不开应用，显示“文件已损坏”"></span>
+            <span id="subtitle" data-typed-text="Dubbo反序列化变成HashMap"></span>
           
         </div>
 
@@ -211,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-05-09 09:53" pubdate>
-          May 9, 2023 am
+        <time datetime="2023-08-09 17:38" pubdate>
+          August 9, 2023 pm
         </time>
       </span>
     
@@ -223,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          431 words
+          2k words
         
       </span>
     
@@ -234,7 +237,7 @@
         
         
         
-          4 mins
+          17 mins
         
       </span>
     
@@ -272,18 +275,28 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Mac打不开应用，显示“文件已损坏”</h1>
+            <h1 style="display: none">Dubbo反序列化变成HashMap</h1>
             
             
               <div class="markdown-body">
                 
-                <p>平时在网上下载的应用，由于不是在苹果商店里购买的，经常会出现抱错，“文件已损坏”。这时候就很头疼。</p>
-<h2 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h2><p>解决办法很简单，一行命令就搞定了。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">sudo xattr -rd com.apple.quarantine &#123;&#123;file_path&#125;&#125;<br></code></pre></td></tr></table></figure>
+                <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>前一阵遇到一个很有意思的问题，Dubbo客户端调用服务端接口，报错了，抛了一个异常，结果到了客户端这边，却变成了一个HashMap，而HashMap里面存放的正是报错信息！</p>
+<p>当时的第一反应就是不可能，这不可能。</p>
+<h3 id="排查问题"><a href="#排查问题" class="headerlink" title="排查问题"></a>排查问题</h3><p>虽然嘴上说不可能，但是事实就摆在眼前，没办法，也只能接受这个现实。那接下来就是漫长的排查问题了（其实也还好，就一个多小时）。</p>
+<p>经过漫长的排查，最终定位到了Hessian中的ClassFactory这个类。ClassFactory这个类看名字就知道干什么的了，负责类的加载。当我们调用Dubbo接口返回结果时，就是通过这个类来加载类信息的。</p>
+<p>我们可以看下它的加载代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> Class&lt;?&gt; load(String className) <span class="hljs-keyword">throws</span> ClassNotFoundException<br>&#123;<br>    <span class="hljs-keyword">if</span> (isAllow(className)) &#123;<br>        <span class="hljs-keyword">return</span> Class.forName(className, <span class="hljs-literal">false</span>, _loader);<br>    &#125;<br>    <span class="hljs-keyword">else</span> &#123;<br>        log.log(Level.SEVERE, className + <span class="hljs-string">&quot; in blacklist or not in whitelist, deserialization  with type &#x27;HashMap&#x27; instead.&quot;</span>);<br>        <span class="hljs-keyword">return</span> HashMap.class;<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-<p>引用一段AI的回答。</p>
+<p>从代码上，我们就能看出来，当指定的类不被允许时，就会返回HashMap类信息。</p>
+<p>但是为什么我们的类不被允许加载呢？？？</p>
+<p>继续看</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-type">boolean</span> <span class="hljs-title function_">isAllow</span><span class="hljs-params">(String className)</span><br>&#123;<br>    ArrayList&lt;Allow&gt; allowList = _allowList;<br>    LinkedList&lt;Allow&gt; allowList = _allowList;<br><br>    <span class="hljs-keyword">if</span> (allowList == <span class="hljs-literal">null</span>) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-keyword">if</span> (_allowClassSet.containsKey(className)) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>    &#125;<br><br>    <span class="hljs-type">int</span> <span class="hljs-variable">size</span> <span class="hljs-operator">=</span> allowList.size();<br>    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> <span class="hljs-variable">i</span> <span class="hljs-operator">=</span> <span class="hljs-number">0</span>; i &lt; size; i++) &#123;<br>        <span class="hljs-type">Allow</span> <span class="hljs-variable">allow</span> <span class="hljs-operator">=</span> allowList.get(i);<br><br>        <span class="hljs-type">Boolean</span> <span class="hljs-variable">isAllow</span> <span class="hljs-operator">=</span> allow.allow(className);<br><br>        <span class="hljs-keyword">if</span> (isAllow != <span class="hljs-literal">null</span>) &#123;<br>            <span class="hljs-keyword">if</span> (isAllow) &#123;<br>                _allowClassSet.put(className, className);<br>            &#125;<br>            <span class="hljs-keyword">return</span> isAllow;<br>        &#125;<br>    &#125;<br>    <span class="hljs-keyword">if</span> (_isWhitelist) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;<br>    &#125;<br><br>    _allowClassSet.put(className, className);<br>    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;<br>&#125;<br><br><span class="hljs-keyword">static</span> &#123;<br>    _staticAllowList = <span class="hljs-keyword">new</span> <span class="hljs-title class_">ArrayList</span>&lt;Allow&gt;();<br><br>    _staticAllowList.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">Allow</span>(<span class="hljs-string">&quot;java\\..+&quot;</span>, <span class="hljs-literal">true</span>));<br>    <span class="hljs-type">ClassLoader</span> <span class="hljs-variable">classLoader</span> <span class="hljs-operator">=</span> ClassFactory.class.getClassLoader();<br>    <span class="hljs-keyword">try</span> &#123;<br>      	<span class="hljs-comment">// 看这里，看这里</span><br>        String[] denyClasses = readLines(classLoader.getResourceAsStream(<span class="hljs-string">&quot;DENY_CLASS&quot;</span>));<br>        <span class="hljs-keyword">for</span> (String denyClass : denyClasses) &#123;<br>            <span class="hljs-keyword">if</span> (denyClass.startsWith(<span class="hljs-string">&quot;#&quot;</span>)) &#123;<br>                <span class="hljs-keyword">continue</span>;<br>            &#125;<br>            _staticAllowList.add(<span class="hljs-keyword">new</span> <span class="hljs-title class_">AllowPrefix</span>(denyClass, <span class="hljs-literal">false</span>));<br>        &#125;<br>    &#125; <span class="hljs-keyword">catch</span> (IOException ignore) &#123;<br><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>通过上述代码，我们可以看到，Hessian在内部维护了一份DENY_CLASS名单。如果你的结果类在这个名单里面或者父类在这个名单里面(通过类路径匹配)，抱歉，你只能获得一份HashMap。</p>
+<p>解决办法也很简单，避开这份名单就好。</p>
 <blockquote>
-<p>这是一个在MacOS上的shell命令，用于从文件或目录中删除隔离属性（quarantine attribute）。隔离属性是操作系统为从互联网下载或从其他来源接收的文件添加的一种安全措施，以防止用户意外执行可能有害的代码。<br><br>命令<code>sudo xattr -rd com.apple.quarantine &#123;&#123;file_path&#125;&#125;</code>将从指定的文件或目录中删除隔离属性，使其可以在没有任何警告或限制的情况下执行。<code>sudo</code>命令用于以管理员权限运行命令，这可能取决于文件的权限。<code>-r</code>选项用于递归地从指定目录中删除属性，<code>-d</code>选项用于从目录本身中删除属性。</p>
+<p>参考: <a target="_blank" rel="noopener" href="https://github.com/apache/dubbo-hessian-lite/commit/8d49db4128aea8fc6e469a25e19b4d50af91e0bd">Add Default Deny List</a></p>
+<p>参考: <a target="_blank" rel="noopener" href="https://blog.csdn.net/include_voidmain/article/details/128476795">CVE-2022-39198 Apache Dubbo Hession Deserialization分析</a></p>
 </blockquote>
 
                 
@@ -297,9 +310,15 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/Mac/">#Mac</a>
+        <a href="/tags/Dubbo/">#Dubbo</a>
       
-        <a href="/tags/Xattr/">#Xattr</a>
+        <a href="/tags/Hession/">#Hession</a>
+      
+        <a href="/tags/HashMap/">#HashMap</a>
+      
+        <a href="/tags/Java/">#Java</a>
+      
+        <a href="/tags/DENY-CLASS/">#DENY_CLASS</a>
       
     </div>
   
@@ -311,8 +330,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>Mac打不开应用，显示“文件已损坏”</div>
-      <div>http://lhcnicholas.github.io/2023/05/09/mac-xattr/</div>
+      <div>Dubbo反序列化变成HashMap</div>
+      <div>http://lhcnicholas.github.io/2023/08/09/Dubbo反序列化变成HashMap/</div>
     </div>
     <div class="license-meta">
       
@@ -324,7 +343,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>May 9, 2023</div>
+          <div>August 9, 2023</div>
         </div>
       
       
@@ -356,18 +375,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/09/%E5%88%A9%E7%94%A8Alfred-Workflow%E8%8E%B7%E5%8F%96Google-Authenticator%E5%8A%A8%E6%80%81%E5%AF%86%E7%A0%81/" title="利用Alfred Workflow获取Google Authenticator动态密码">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">利用Alfred Workflow获取Google Authenticator动态密码</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/04/03/My-new-Post/" title="新的开始">
-                        <span class="hidden-mobile">新的开始</span>
+                      <a href="/2023/08/09/Mac%E4%B8%8A%E7%94%A8Docker%E5%AE%89%E8%A3%85Redis%E9%9B%86%E7%BE%A4/" title="Mac上用Docker安装Redis集群">
+                        <span class="hidden-mobile">Mac上用Docker安装Redis集群</span>
                         <span class="visible-mobile">Next</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
