@@ -16,24 +16,24 @@
   <meta name="author" content="Nic">
   <meta name="keywords" content="">
   
-    <meta name="description" content="时隔多年，又开始搞博客了。 大学的时候，短暂的搞过一段时间，当时就是单纯的对自建博客这个东西很好奇。就感觉，哇，好奇妙啊，它就这么展示在了自己的眼前，太不可思议了。那是一种对于技术的好奇，而对于写博客这个事情，其实我当时并没有什么兴趣，也不知道要写些什么东西。最后也就不了了知，没几年就不再续费了，当年的代码后来也找不到了。 只是可惜了当年购买的域名，niczo.com, 我还挺喜欢这个域名的，简短">
+    <meta name="description" content="在开发过程中，有时候会碰到一种情况，这个文件我不想提交，但是又不想把他加入到.gitignore文件里面去。 比如一些配置文件，我只是把地址配置到本地，完全不需要提交，这时候就很麻烦，每次提交的时候都要把它单独排除掉，有时候还容易误操作，就很烦。但又不能把它加入到.gitignore文件里面去，毕竟对于新增的配置，还是需要提交的。 这时候，我发现git有个命令：update-index --ski">
 <meta property="og:type" content="article">
-<meta property="og:title" content="新的开始">
-<meta property="og:url" content="http://lhcnicholas.github.io/2023/04/03/My-new-Post/index.html">
+<meta property="og:title" content="Git将不想提交又不想加入到.gitIgnore里面的文件忽略掉">
+<meta property="og:url" content="http://lhcnicholas.github.io/2024/08/18/skip-work-tree/index.html">
 <meta property="og:site_name" content="NIC ZONE">
-<meta property="og:description" content="时隔多年，又开始搞博客了。 大学的时候，短暂的搞过一段时间，当时就是单纯的对自建博客这个东西很好奇。就感觉，哇，好奇妙啊，它就这么展示在了自己的眼前，太不可思议了。那是一种对于技术的好奇，而对于写博客这个事情，其实我当时并没有什么兴趣，也不知道要写些什么东西。最后也就不了了知，没几年就不再续费了，当年的代码后来也找不到了。 只是可惜了当年购买的域名，niczo.com, 我还挺喜欢这个域名的，简短">
+<meta property="og:description" content="在开发过程中，有时候会碰到一种情况，这个文件我不想提交，但是又不想把他加入到.gitignore文件里面去。 比如一些配置文件，我只是把地址配置到本地，完全不需要提交，这时候就很麻烦，每次提交的时候都要把它单独排除掉，有时候还容易误操作，就很烦。但又不能把它加入到.gitignore文件里面去，毕竟对于新增的配置，还是需要提交的。 这时候，我发现git有个命令：update-index --ski">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-04-03T15:18:14.000Z">
+<meta property="article:published_time" content="2024-08-18T11:47:00.000Z">
 <meta property="article:modified_time" content="2024-08-18T04:10:56.101Z">
 <meta property="article:author" content="Nic">
-<meta property="article:tag" content="First">
+<meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary_large_image">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>新的开始 - NIC ZONE</title>
+  <title>Git将不想提交又不想加入到.gitIgnore里面的文件忽略掉 - NIC ZONE</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -199,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="新的开始"></span>
+            <span id="subtitle" data-typed-text="Git将不想提交又不想加入到.gitIgnore里面的文件忽略掉"></span>
           
         </div>
 
@@ -210,8 +210,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2023-04-03 15:18" pubdate>
-          April 3, 2023 pm
+        <time datetime="2024-08-18 11:47" pubdate>
+          August 18, 2024 am
         </time>
       </span>
     
@@ -222,7 +222,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          252 words
+          715 words
         
       </span>
     
@@ -233,7 +233,7 @@
         
         
         
-          3 mins
+          6 mins
         
       </span>
     
@@ -271,15 +271,33 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">新的开始</h1>
+            <h1 style="display: none">Git将不想提交又不想加入到.gitIgnore里面的文件忽略掉</h1>
             
             
               <div class="markdown-body">
                 
-                <p>时隔多年，又开始搞博客了。</p>
-<p>大学的时候，短暂的搞过一段时间，当时就是单纯的对自建博客这个东西很好奇。就感觉，哇，好奇妙啊，它就这么展示在了自己的眼前，太不可思议了。那是一种对于技术的好奇，而对于写博客这个事情，其实我当时并没有什么兴趣，也不知道要写些什么东西。最后也就不了了知，没几年就不再续费了，当年的代码后来也找不到了。</p>
-<p>只是可惜了当年购买的域名，<code>niczo.com</code>, 我还挺喜欢这个域名的，简短，好记。现在想再买回来可就难了，已经在域名贩子手里了，要买回来得一两万……，一口老血吐到屏幕上。</p>
-<p>这次多写写吧。</p>
+                <p>在开发过程中，有时候会碰到一种情况，这个文件我不想提交，但是又不想把他加入到.gitignore文件里面去。</p>
+<p>比如一些配置文件，我只是把地址配置到本地，完全不需要提交，这时候就很麻烦，每次提交的时候都要把它单独排除掉，有时候还容易误操作，就很烦。但又不能把它加入到.gitignore文件里面去，毕竟对于新增的配置，还是需要提交的。</p>
+<p>这时候，我发现git有个命令：<code>update-index --skip-worktree</code> ,这个命令可以将你指定的文件忽略掉，使用方法也很简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 假设文件名为 config.yaml</span><br>git update-index --skip-worktree config.yaml<br></code></pre></td></tr></table></figure>
+
+<p>如果你不想忽略了，也很简单：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git update-index --no-skip-worktree config.yaml<br></code></pre></td></tr></table></figure>
+
+
+
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>这个方法虽好，但是毕竟没有git提示你这个文件修改了，时间长了，你可能都忘了这个文件修改了，这时候可以使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git ls-files -v | grep <span class="hljs-string">&#x27;^[S]&#x27;</span><br></code></pre></td></tr></table></figure>
+
+<p><code>ls-files -v</code>这个命令会列出git目录下所有的文件，并显示出他们的状态，S开头 表示这个文件是被忽略掉的，被标记了<code>--skip-worktree</code>。</p>
+<p>另外还有就是被忽略了的文件在你切换分支或者pull代码的时候会报错，因为你本地的文件和其他分支或远程上的文件状态不一致，这时候可以临时取消忽略就可以了。</p>
+<h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><code>git ls-files -v</code> 列出当前 Git 仓库中的所有文件，并显示它们的状态。</p>
+<p>文件名前的标志：</p>
+<ul>
+<li><code>H</code>：表示文件正常被跟踪。</li>
+<li><code>h</code>：表示文件被标记为 <code>--assume-unchanged</code>。</li>
+<li><code>S</code>：表示文件被标记为 <code>--skip-worktree</code>。</li>
+</ul>
 
                 
               </div>
@@ -292,7 +310,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/First/">#First</a>
+        <a href="/tags/git/">#git</a>
       
     </div>
   
@@ -304,8 +322,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>新的开始</div>
-      <div>http://lhcnicholas.github.io/2023/04/03/My-new-Post/</div>
+      <div>Git将不想提交又不想加入到.gitIgnore里面的文件忽略掉</div>
+      <div>http://lhcnicholas.github.io/2024/08/18/skip-work-tree/</div>
     </div>
     <div class="license-meta">
       
@@ -317,7 +335,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>Posted on</div>
-          <div>April 3, 2023</div>
+          <div>August 18, 2024</div>
         </div>
       
       
@@ -349,15 +367,15 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2023/05/09/mac-xattr/" title="Mac打不开应用，显示“文件已损坏”">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Mac打不开应用，显示“文件已损坏”</span>
-                        <span class="visible-mobile">Previous</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2023/08/09/Dubbo%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%98%E6%88%90HashMap/" title="Dubbo反序列化变成HashMap">
+                        <span class="hidden-mobile">Dubbo反序列化变成HashMap</span>
+                        <span class="visible-mobile">Next</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

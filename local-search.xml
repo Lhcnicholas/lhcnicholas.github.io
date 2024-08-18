@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>Git将不想提交又不想加入到.gitIgnore里面的文件忽略掉</title>
+    <link href="/2024/08/18/skip-work-tree/"/>
+    <url>/2024/08/18/skip-work-tree/</url>
+    
+    <content type="html"><![CDATA[<p>在开发过程中，有时候会碰到一种情况，这个文件我不想提交，但是又不想把他加入到.gitignore文件里面去。</p><p>比如一些配置文件，我只是把地址配置到本地，完全不需要提交，这时候就很麻烦，每次提交的时候都要把它单独排除掉，有时候还容易误操作，就很烦。但又不能把它加入到.gitignore文件里面去，毕竟对于新增的配置，还是需要提交的。</p><p>这时候，我发现git有个命令：<code>update-index --skip-worktree</code> ,这个命令可以将你指定的文件忽略掉，使用方法也很简单：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 假设文件名为 config.yaml</span><br>git update-index --skip-worktree config.yaml<br></code></pre></td></tr></table></figure><p>如果你不想忽略了，也很简单：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git update-index --no-skip-worktree config.yaml<br></code></pre></td></tr></table></figure><h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><p>这个方法虽好，但是毕竟没有git提示你这个文件修改了，时间长了，你可能都忘了这个文件修改了，这时候可以使用如下命令：</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">git ls-files -v | grep <span class="hljs-string">&#x27;^[S]&#x27;</span><br></code></pre></td></tr></table></figure><p><code>ls-files -v</code>这个命令会列出git目录下所有的文件，并显示出他们的状态，S开头 表示这个文件是被忽略掉的，被标记了<code>--skip-worktree</code>。</p><p>另外还有就是被忽略了的文件在你切换分支或者pull代码的时候会报错，因为你本地的文件和其他分支或远程上的文件状态不一致，这时候可以临时取消忽略就可以了。</p><h3 id="解释"><a href="#解释" class="headerlink" title="解释"></a>解释</h3><p><code>git ls-files -v</code> 列出当前 Git 仓库中的所有文件，并显示它们的状态。</p><p>文件名前的标志：</p><ul><li><code>H</code>：表示文件正常被跟踪。</li><li><code>h</code>：表示文件被标记为 <code>--assume-unchanged</code>。</li><li><code>S</code>：表示文件被标记为 <code>--skip-worktree</code>。</li></ul>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>git</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Dubbo反序列化变成HashMap</title>
     <link href="/2023/08/09/Dubbo%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%98%E6%88%90HashMap/"/>
     <url>/2023/08/09/Dubbo%E5%8F%8D%E5%BA%8F%E5%88%97%E5%8C%96%E5%8F%98%E6%88%90HashMap/</url>
